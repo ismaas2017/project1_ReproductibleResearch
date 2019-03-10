@@ -62,3 +62,26 @@ data1 %>% select(steps,interval)%>%group_by(interval) %>%summarise(mean=mean(ste
 
 The maximum average steps taken interval is 835 to 840 minutes interval, which taken the 206.1698 stpes in that 5 minute interval.
 
+## Imputing missing values
+
+1.count missing values
+`
+```{r count missing values, echo=TRUE}
+sum(is.na(data1))
+```
+
+2.filling missing values
+
+```{r filling missing values, echo=TRUE}
+datafill<-data1
+for(i in 1:ncol(datafill)){
+  datafill[is.na(datafill[,i]), i] <- mean(datafill[,i], na.rm = TRUE)
+}
+head(datafill)
+```
+3.
+
+```{r new dataset, echo=TRUE}
+head(datafill)
+```
+
