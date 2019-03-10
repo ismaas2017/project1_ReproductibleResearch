@@ -105,7 +105,7 @@ datafill$weekend<-ifelse(isWeekday(datafill$date, wday=1:5), "Weekdays", "Weeken
 
 2.
 
-```{r time serie for weekdays and weekend, echo=TRUE}
+```{r time series for weekdays and weekend, echo=TRUE}
 library(ggplot2)
 datafill %>% select(steps,interval,weekend)%>%group_by(weekend, interval) %>%summarise(mean=mean(steps,na.rm=TRUE))%>%ggplot(aes(x = interval, y = mean,colour=weekend)) + geom_line(aes(colour=weekend))+ xlab("Interval")+ ylab("Number of steps ")+facet_wrap(~weekend)+theme(strip.background = element_rect(fill="orange"))
 ```
