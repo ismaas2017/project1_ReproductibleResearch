@@ -1,8 +1,8 @@
 ---
 title: "Reproductible Research"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
   word_document: default
 ---
 
@@ -36,7 +36,8 @@ head(data1,10)
 1.
 
 ```{r total steps, echo=TRUE}
-data1 %>%select(steps, date) %>% group_by(date) %>%summarise (total=sum(steps,na.rm=TRUE))
+library(dplyr)
+data1 %>%select(steps, date) %>% group_by(date) %>%summarise(total=sum(steps,na.rm=TRUE))
 ```
 2.
 ```{r hist total steps, echo=TRUE}
