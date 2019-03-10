@@ -85,3 +85,10 @@ head(datafill)
 head(datafill)
 ```
 
+4.
+```{r hist total steps new dataset, echo=TRUE}
+datafill %>%select(steps, date) %>% group_by(date) %>%summarise(total=sum(steps,na.rm=TRUE))%>%with(hist(total,10, col=date,main="total number of steps taken each day", xlab="Total steps", ylab="Date"))
+```
+```{r mean median total steps new dataset, echo=TRUE}
+datafill %>%select(steps, date) %>% group_by(date) %>%summarise(total=sum(steps,na.rm=TRUE),mean=mean(steps,na.rm=TRUE),median=median(steps,na.rm=TRUE))
+```
