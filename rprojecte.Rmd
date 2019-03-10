@@ -92,3 +92,20 @@ datafill %>%select(steps, date) %>% group_by(date) %>%summarise(total=sum(steps,
 ```{r mean median total steps new dataset, echo=TRUE}
 datafill %>%select(steps, date) %>% group_by(date) %>%summarise(total=sum(steps,na.rm=TRUE),mean=mean(steps,na.rm=TRUE),median=median(steps,na.rm=TRUE))
 ```
+## Are there differences in activity patterns between weekdays and weekends?
+
+1.
+```{r weekdays and weekend from date, echo=TRUE}
+library(timeDate)
+datafill$date <- as.Date(datafill$date)
+
+datafill$weekend<-ifelse(isWeekday(datafill$date, wday=1:5), "Weekdays", "Weekend")
+
+```
+
+2.
+
+```{r time serie for weekdays and weekend, echo=TRUE}
+library(ggplot2)
+datafill %>% select(steps,interval,weekend)%>%group_by(weekend, interval) %>%summarise(mean=mean(steps,na.rm=TRUE))%>%ggplot(aes(x = interval, y = mean,colour=weekend)) + geom_line(aes(colour=weekend))+ xlab("Interval")+ ylab("Number of steps ")+facet_wrap(~weekend)+theme(strip.background = element_rect(fill="orange"))
+```
