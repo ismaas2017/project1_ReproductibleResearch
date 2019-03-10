@@ -55,3 +55,10 @@ library(ggplot2)
 data1 %>% select(steps,interval)%>%group_by(interval) %>%summarise(mean=mean(steps,na.rm=TRUE))%>%ggplot(aes(x = interval, y = mean)) + geom_line()+ xlab("Interval")+ ylab("Mean number of steps ")
 ```
 
+2.
+```{r maximum average steps, echo=TRUE}
+data1 %>% select(steps,interval)%>%group_by(interval) %>%summarise(mean=mean(steps,na.rm=TRUE))%>%arrange(desc(mean))%>%head(1)
+```
+
+The maximum average steps taken interval is 835 to 840 minutes interval, which taken the 206.1698 stpes in that 5 minute interval.
+
